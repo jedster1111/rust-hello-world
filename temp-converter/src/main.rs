@@ -1,5 +1,4 @@
-use std::io;
-use core::num::ParseIntError;
+use std::{io, num::ParseFloatError};
 
 fn main() {
     let temp_celsius = loop {
@@ -12,14 +11,12 @@ fn main() {
         }
     };
 
-    println!("Entered temp: {} °C", temp_celsius);
-
     let temp_fahrenheit = to_fahrenheit(temp_celsius);
 
-    println!("Temp in fahrenheit: {} °F", temp_fahrenheit);
+    println!("{} °C is {} °F", temp_celsius, temp_fahrenheit);
 }
 
-fn get_input() -> Result<i32, ParseIntError> {
+fn get_input() -> Result<f32, ParseFloatError> {
     let mut input_temp = String::new();
 
     println!("Enter a temperature in Celsius.");
@@ -31,6 +28,6 @@ fn get_input() -> Result<i32, ParseIntError> {
     input_temp.trim().parse()
 }
 
-fn to_fahrenheit(temp: i32) -> i32 {
-    (temp * 9 / 5) + 32
+fn to_fahrenheit(temp: f32) -> f32 {
+    (temp * 9. / 5.) + 32.
 }
